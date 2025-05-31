@@ -22,6 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.delay
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.res.painterResource
+import com.example.firstcomposeapp.R
 @Composable
 fun WelcomeHomeScreen(
     onNavigateToBooks: () -> Unit
@@ -91,10 +93,10 @@ fun WelcomeHomeScreen(
                     contentAlignment = Alignment.Center
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Home,
+                        painter = painterResource(id = R.drawable.online_library),
                         contentDescription = "Book Icon",
                         modifier = Modifier.size(60.dp),
-                        tint = Color.White
+                        tint = Color.Unspecified
                     )
                 }
             }

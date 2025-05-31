@@ -13,16 +13,20 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import com.example.firstcomposeapp.R
 import com.example.firstcomposeapp.presentation.components.BookItem
 import com.example.firstcomposeapp.presentation.components.SearchSection
 import com.example.firstcomposeapp.presentation.viewmodel.BookViewModel
 import com.example.firstcomposeapp.presentation.components.BottomNavBar
+
 data class BookCategory(
     val name: String,
-    val icon: ImageVector,
-    val genre: String? = null // null means "All Categories"
+    val icon: @Composable () -> Unit, // Takes a composable Icon
+    val genre: String? = null // null = "All Categories"
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,14 +42,56 @@ fun BookListScreen(
 
     // Define categories with icons
     val categories = listOf(
-        BookCategory("Tous", Icons.Default.Menu, null),
-        BookCategory("Science Fiction", Icons.Default.Favorite, "Science Fiction"),
-        BookCategory("Développement Personnel", Icons.Default.Search, "Développement Personnel"),
-        BookCategory("business", Icons.Default.Person, "business"),
+        BookCategory("Tous",   icon={Icon(
+            painter = painterResource(id = R.drawable.bullet_point),
+            contentDescription = "Science Fiction Icon" ,
+                   modifier= Modifier.size(24.dp),
+            tint = Color.Unspecified
+        )}, null),
 
-        BookCategory("Philosophie", Icons.Default.Person, "Philosophie"),
-        BookCategory("Science Fiction", Icons.Default.Person, "Science Fiction"),
-        BookCategory("Enfants", Icons.Default.Person, "Enfants"),
+        BookCategory(
+            name = "Science Fiction",
+            icon={Icon(
+                painter = painterResource(id = R.drawable.science_fiction),
+                contentDescription = "Science Fiction Icon",
+                        modifier= Modifier.size(24.dp),
+                tint = Color.Unspecified
+            )},
+            genre = "Science Fiction"
+        ),
+        BookCategory(name="Développement Personnel", icon={Icon(
+            painter = painterResource(id = R.drawable.self_improvement),
+            contentDescription = "Développement Personnel Icon",
+            modifier= Modifier.size(24.dp),
+            tint = Color.Unspecified
+        )}, genre="Développement Personnel"),
+
+        BookCategory(name="business", icon={Icon(
+            painter = painterResource(id = R.drawable.business),
+            contentDescription = "business Icon",
+            modifier= Modifier.size(24.dp),
+            tint = Color.Unspecified
+        )}, genre="business"),
+
+        BookCategory("Philosophie", icon={Icon(
+            painter = painterResource(id = R.drawable.philosophy),
+            contentDescription = "Philosophie Icon",
+            modifier= Modifier.size(24.dp),
+            tint = Color.Unspecified
+        )}, "Philosophie"),
+
+        BookCategory(name="Sport",  icon={Icon(
+            painter = painterResource(id = R.drawable.sport),
+            contentDescription = "Sport Icon",
+            modifier= Modifier.size(24.dp),
+            tint = Color.Unspecified
+        )}, genre="Sport"),
+        BookCategory("Enfants", icon={Icon(
+            painter = painterResource(id = R.drawable.enfants),
+            contentDescription = "Enfants Icon",
+            modifier= Modifier.size(24.dp),
+            tint = Color.Unspecified
+        )}, "Enfants"),
 
     )
 
@@ -120,11 +166,7 @@ fun BookListScreen(
                                         verticalAlignment = Alignment.CenterVertically,
                                         horizontalArrangement = Arrangement.spacedBy(4.dp)
                                     ) {
-                                        Icon(
-                                            imageVector = category.icon,
-                                            contentDescription = null,
-                                            modifier = Modifier.size(16.dp)
-                                        )
+                                        category.icon()
                                         Text(
                                             text = category.name,
                                             style = MaterialTheme.typography.labelMedium
