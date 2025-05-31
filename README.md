@@ -68,8 +68,6 @@ Application Android native développée en **Kotlin** avec **Jetpack Compose** e
 - **Material Design 3** - Design system avec thème adaptatif
 - **Navigation Compose** - Navigation entre écrans
 - **StateFlow/Flow** - Gestion d'état réactive
-- **Coroutines** - Programmation asynchrone
-- **Coil** - Chargement d'images
 - **Dynamic Color** - Thème système adaptatif (mode sombre/clair)
 
 ## 📱 Fonctionnalités
