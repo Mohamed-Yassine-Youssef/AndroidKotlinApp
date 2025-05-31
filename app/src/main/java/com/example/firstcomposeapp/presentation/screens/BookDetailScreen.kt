@@ -1,6 +1,4 @@
-// screens/BookDetailScreen.kt
 package com.example.firstcomposeapp.presentation.screens
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
@@ -10,7 +8,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
-import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
@@ -24,7 +21,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.firstcomposeapp.presentation.viewmodel.BookViewModel
-import com.example.firstcomposeapp.domain.model.Book
 import androidx.compose.ui.platform.LocalUriHandler
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -126,11 +122,10 @@ fun BookDetailScreen(
                     }
                 }
 
-                // Add the Amazon purchase button
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
                     onClick = {
-                        uriHandler.openUri(currentBook.amazonLink ?: "https://www.amazon.com")
+                        uriHandler.openUri(currentBook.amazonLink )
                     },
                     modifier = Modifier
                         .fillMaxWidth()

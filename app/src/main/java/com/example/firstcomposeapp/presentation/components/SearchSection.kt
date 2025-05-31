@@ -1,6 +1,4 @@
-// components/SearchBar.kt
 package com.example.firstcomposeapp.presentation.components
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Search
@@ -9,7 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-@OptIn(ExperimentalMaterial3Api::class)
+
 @Composable
 fun SearchSection(
     searchQuery: String,
@@ -17,7 +15,7 @@ fun SearchSection(
     booksCount: Int
 ) {
     Column {
-        // Search Bar
+
         OutlinedTextField(
             value = searchQuery,
             onValueChange = onSearchQueryChange,
@@ -28,9 +26,6 @@ fun SearchSection(
                 .padding(16.dp),
             singleLine = true
         )
-
-        // Filter Toggle
-
 
         Spacer(modifier = Modifier.height(8.dp))
     }

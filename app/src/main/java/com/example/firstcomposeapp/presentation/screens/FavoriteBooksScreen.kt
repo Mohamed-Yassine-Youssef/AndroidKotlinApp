@@ -1,6 +1,4 @@
-// screens/FavoriteBooksScreen.kt
 package com.example.firstcomposeapp.presentation.screens
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -14,6 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.firstcomposeapp.presentation.components.BookItem
 import com.example.firstcomposeapp.presentation.components.BottomNavBar
+import com.example.firstcomposeapp.presentation.components.SearchSection
 import com.example.firstcomposeapp.presentation.viewmodel.BookViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,7 +30,7 @@ fun FavoriteBooksScreen(
 
     var searchQuery by remember { mutableStateOf("") }
 
-    // Filter favorite books based on search query
+
     val filteredFavoriteBooks = remember(favoriteBooks, searchQuery) {
         if (searchQuery.isEmpty()) {
             favoriteBooks
@@ -59,7 +58,7 @@ fun FavoriteBooksScreen(
                     }
                 },
                 actions = {
-                    // Show count of favorite books
+
                     Text(
                         text = "${favoriteBooks.size}",
                         style = MaterialTheme.typography.titleMedium,
@@ -72,14 +71,15 @@ fun FavoriteBooksScreen(
                 )
             )
         },
-                bottomBar = {
+        bottomBar = {
             BottomNavBar(
                 currentDestination = "favorite_books",
                 onNavigate = { destination ->
                     if (destination == "book_list") {
                         onNavigateToBooks()
                     }
-                },)
+                },
+            )
         }
     ) { paddingValues ->
         Column(
@@ -87,42 +87,13 @@ fun FavoriteBooksScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            // Search Section for favorites
+
             if (favoriteBooks.isNotEmpty()) {
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(16.dp),
-                    elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-                ) {
-                    OutlinedTextField(
-                        value = searchQuery,
-                        onValueChange = { searchQuery = it },
-                        label = { Text("Rechercher dans les favoris") },
-                        leadingIcon = {
-                            Icon(
-                                imageVector = Icons.Default.Search,
-                                contentDescription = "Rechercher"
-                            )
-                        },
-                        trailingIcon = {
-                            if (searchQuery.isNotEmpty()) {
-                                IconButton(
-                                    onClick = { searchQuery = "" }
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Clear,
-                                        contentDescription = "Effacer"
-                                    )
-                                }
-                            }
-                        },
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(16.dp),
-                        singleLine = true
-                    )
-                }
+                SearchSection(
+                    searchQuery = searchQuery,
+                    onSearchQueryChange = { searchQuery = it },
+                    booksCount = favoriteBooks.size
+                )
             }
 
             when {
@@ -153,7 +124,7 @@ fun FavoriteBooksScreen(
                 }
 
                 favoriteBooks.isEmpty() -> {
-                    // Empty state when no favorites
+
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
@@ -199,7 +170,7 @@ fun FavoriteBooksScreen(
                 }
 
                 filteredFavoriteBooks.isEmpty() && searchQuery.isNotEmpty() -> {
-                    // Empty state when search returns no results
+
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
@@ -231,12 +202,12 @@ fun FavoriteBooksScreen(
                 }
 
                 else -> {
-                    // Display favorite books
+
                     LazyColumn(
                         contentPadding = PaddingValues(16.dp),
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        // Header with count
+
                         item {
                             Card(
                                 modifier = Modifier.fillMaxWidth(),
@@ -279,7 +250,7 @@ fun FavoriteBooksScreen(
                             }
                         }
 
-                        // Favorite books list
+
                         items(filteredFavoriteBooks) { book ->
                             BookItem(
                                 book = book,

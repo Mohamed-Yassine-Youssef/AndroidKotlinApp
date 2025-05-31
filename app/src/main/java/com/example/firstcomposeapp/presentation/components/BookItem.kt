@@ -1,5 +1,4 @@
 package com.example.firstcomposeapp.presentation.components
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -38,7 +37,6 @@ fun BookItem(
         Row(
             modifier = Modifier.padding(12.dp)
         ) {
-            // Book Cover
 
              Image(
                painter = rememberAsyncImagePainter(
@@ -55,7 +53,6 @@ fun BookItem(
 
             Spacer(modifier = Modifier.width(12.dp))
 
-            // Book Details
             Column(
                 modifier = Modifier.weight(1f)
             ) {
@@ -108,7 +105,6 @@ fun BookItem(
                 }
             }
 
-            // Favorite Button
             IconButton(
                 onClick = onFavoriteClick
             ) {

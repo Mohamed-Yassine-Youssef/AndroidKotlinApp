@@ -1,5 +1,4 @@
 package com.example.firstcomposeapp.presentation.components
-
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
@@ -50,7 +49,7 @@ fun BottomNavBar(
     onNavigate: (String) -> Unit,
     favoriteCount: Int = 0
 ) {
-    // Glassmorphism background with gradient
+
     val gradientColors = listOf(
         MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
         MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.9f)
@@ -61,7 +60,7 @@ fun BottomNavBar(
             .fillMaxWidth()
             .padding(horizontal = 16.dp, vertical = 8.dp)
     ) {
-        // Main navigation container with modern styling
+
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -109,7 +108,7 @@ private fun ModernNavItem(
     favoriteCount: Int,
     onClick: () -> Unit
 ) {
-    // Animation for selection state
+
     val animatedScale by animateFloatAsState(
         targetValue = if (isSelected) 1.1f else 1f,
         animationSpec = spring(
@@ -125,7 +124,7 @@ private fun ModernNavItem(
         label = "alpha"
     )
 
-    // Color animation
+
     val animatedColor by animateColorAsState(
         targetValue = if (isSelected)
             MaterialTheme.colorScheme.primary
@@ -135,7 +134,6 @@ private fun ModernNavItem(
         label = "color"
     )
 
-    // Background animation for selected state
     val backgroundAlpha by animateFloatAsState(
         targetValue = if (isSelected) 1f else 0f,
         animationSpec = tween(300),
@@ -165,17 +163,16 @@ private fun ModernNavItem(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
             ) {
-                // Icon with badge
+
                 Box(contentAlignment = Alignment.TopEnd) {
                     Icon(
                         imageVector = if (isSelected) destination.selectedIcon else destination.unselectedIcon,
                         contentDescription = destination.title,
                         modifier = Modifier
                             .size(24.dp),
-                        tint = animatedColor
+
                     )
 
-                    // Modern badge design
                     if (destination == BottomNavDestination.FAVORITES && favoriteCount > 0) {
                         val badgeScale by animateFloatAsState(
                             targetValue = 1f,
@@ -191,10 +188,6 @@ private fun ModernNavItem(
                                 .offset(x = 8.dp, y = (-8).dp)
                                 .scale(badgeScale)
                                 .size(18.dp)
-                                .shadow(
-                                    elevation = 4.dp,
-                                    shape = CircleShape
-                                )
                                 .background(
                                     brush = Brush.radialGradient(
                                         colors = listOf(
@@ -218,7 +211,6 @@ private fun ModernNavItem(
 
                 Spacer(modifier = Modifier.height(4.dp))
 
-                // Animated label
                 Text(
                     text = destination.title,
                     style = MaterialTheme.typography.labelSmall.copy(
@@ -229,7 +221,6 @@ private fun ModernNavItem(
                 )
             }
 
-            // Selection indicator
             if (isSelected) {
                 Box(
                     modifier = Modifier

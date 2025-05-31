@@ -1,4 +1,3 @@
-// models/Book.kt
 package com.example.firstcomposeapp.domain.model
 
 data class Book(

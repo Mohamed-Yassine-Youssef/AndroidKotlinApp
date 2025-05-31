@@ -1,12 +1,8 @@
-// screens/BookListScreen.kt
 package com.example.firstcomposeapp.presentation.screens
-
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
@@ -14,7 +10,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.firstcomposeapp.R
@@ -25,8 +20,8 @@ import com.example.firstcomposeapp.presentation.components.BottomNavBar
 
 data class BookCategory(
     val name: String,
-    val icon: @Composable () -> Unit, // Takes a composable Icon
-    val genre: String? = null // null = "All Categories"
+    val icon: @Composable () -> Unit,
+    val genre: String? = null
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -39,8 +34,6 @@ fun BookListScreen(
     val uiState by viewModel.uiState.collectAsState()
     var searchQuery by remember { mutableStateOf("") }
     var selectedCategory by remember { mutableStateOf("Tous") }
-
-    // Define categories with icons
     val categories = listOf(
         BookCategory("Tous",   icon={Icon(
             painter = painterResource(id = R.drawable.bullet_point),
@@ -127,7 +120,6 @@ fun BookListScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            // Search Section
             SearchSection(
                 searchQuery = searchQuery,
                 onSearchQueryChange = { searchQuery = it },
@@ -135,7 +127,6 @@ fun BookListScreen(
                 booksCount = uiState.displayBooks.size
             )
 
-            // Categories Section
             Card(
                 modifier = Modifier
                     .fillMaxWidth()

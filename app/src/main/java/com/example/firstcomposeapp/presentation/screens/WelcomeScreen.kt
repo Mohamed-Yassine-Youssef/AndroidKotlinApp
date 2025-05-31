@@ -1,6 +1,4 @@
-
-package com.example.firstcomposeapp
-
+package com.example.firstcomposeapp.presentation.screens
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -28,7 +26,7 @@ import com.example.firstcomposeapp.R
 fun WelcomeHomeScreen(
     onNavigateToBooks: () -> Unit
 ) {
-    // Animation states
+
     var visible by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(
         targetValue = if (visible) 1f else 0.8f,
@@ -46,7 +44,7 @@ fun WelcomeHomeScreen(
         )
     )
 
-    // Trigger animation on composition
+
     LaunchedEffect(Unit) {
         delay(300)
         visible = true
@@ -67,7 +65,7 @@ fun WelcomeHomeScreen(
                 )
             )
     ) {
-        // Decorative circles
+
         DecorativeBackground()
 
         Column(
@@ -78,7 +76,7 @@ fun WelcomeHomeScreen(
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // App Icon/Logo
+
             Card(
                 modifier = Modifier
                     .size(120.dp),
@@ -103,7 +101,7 @@ fun WelcomeHomeScreen(
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Welcome Text
+
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.alpha(alpha)
@@ -140,7 +138,7 @@ fun WelcomeHomeScreen(
 
             Spacer(modifier = Modifier.height(60.dp))
 
-            // Enter Button
+
             Button(
                 onClick = onNavigateToBooks,
                 modifier = Modifier
@@ -177,7 +175,7 @@ fun WelcomeHomeScreen(
 
         }
 
-        // Bottom decorative element
+
         Box(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
@@ -212,7 +210,7 @@ fun WelcomeHomeScreen(
 
 @Composable
 fun DecorativeBackground() {
-    // Large decorative circles
+
     Box(
         modifier = Modifier
             .offset(x = (-100).dp, y = (-150).dp)
@@ -242,14 +240,14 @@ fun DecorativeBackground() {
                 Color.White.copy(alpha = 0.06f)
             )
     )
+
+    @Composable
+    fun WelcomeHomeScreenPreview() {
+        MaterialTheme {
+            WelcomeHomeScreen(
+                onNavigateToBooks = { }
+            )
+        }}
 }
 
-// Preview
-@Composable
-fun WelcomeHomeScreenPreview() {
-    MaterialTheme {
-        WelcomeHomeScreen(
-            onNavigateToBooks = { }
-        )
-    }
-}
+

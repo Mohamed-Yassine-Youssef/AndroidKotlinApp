@@ -1,6 +1,4 @@
-// viewmodel/BookViewModel.kt
 package com.example.firstcomposeapp.presentation.viewmodel
-
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firstcomposeapp.data.repository.BookRepository
@@ -111,11 +109,7 @@ class BookViewModel : ViewModel() {
         }
     }
 
-    fun clearError() {
-        _uiState.value = _uiState.value.copy(errorMessage = null)
-    }
 
-    fun getFavoriteBooks(): List<Book> = _uiState.value.books.filter { it.isFavorite }
 }
 
 data class BookUiState(
