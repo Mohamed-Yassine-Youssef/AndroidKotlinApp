@@ -49,7 +49,7 @@ Application Android native développée en **Kotlin** avec **Jetpack Compose** e
 ```
 📁 presentation/
   ├── components/
-  │   ├── BookItem.kt - Composable réutilisable pour un livre
+  │   ├── BookItem.kt 
   │   ├── SearchAndFilterSection.kt - Barre de recherche et filtres
   │   └── BottomNavBar.kt - Navigation entre les écrans principaux
   ├── screens/
