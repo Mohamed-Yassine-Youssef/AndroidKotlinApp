@@ -263,9 +263,8 @@ implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
 - 📈 **Recommandations** basées sur les favoris
 
 ## 🎨 Captures d'Écran
-![welcome](https://github.com/user-attachments/assets/6e3b93fe-905f-4699-994b-35a6d5d58446)
-![catalogue](https://github.com/user-attachments/assets/7fea268b-5855-4e20-bfda-663fc867d46d)
-
+<img src="https://github.com/user-attachments/assets/6e3b93fe-905f-4699-994b-35a6d5d58446" width="200" height="150" />
+<img src="https://github.com/user-attachments/assets/7fea268b-5855-4e20-bfda-663fc867d46d" width="200" height="150" />
 
 ---
 
