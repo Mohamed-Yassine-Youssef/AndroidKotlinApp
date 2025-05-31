@@ -263,7 +263,7 @@ implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
 - 📈 **Recommandations** basées sur les favoris
 
 ## 🎨 Captures d'Écran(WelcomeScreen et BookListScreen)
-<img src="https://github.com/user-attachments/assets/6e3b93fe-905f-4699-994b-35a6d5d58446" width="300" height="600"/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src="https://github.com/user-attachments/assets/6e3b93fe-905f-4699-994b-35a6d5d58446" width="300" height="600"/> &nbsp;&nbsp;
 
 <img src="https://github.com/user-attachments/assets/672eaca6-99ce-442c-987a-93ea9750e208" width="300" height="600"/> 
 
