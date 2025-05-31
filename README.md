@@ -133,7 +133,7 @@ fun BookCatalogTheme(
         content = content
     )
 }
-
+```
 ## 🔧 Bonnes Pratiques Implémentées
 
 ### **Architecture**
