@@ -80,10 +80,8 @@ Application Android native développée en **Kotlin** avec **Jetpack Compose** e
 ### Écran Principal (Catalogue)
 - ✅ **Affichage en carte** avec couverture, titre, auteur
 - ✅ **Recherche en temps réel** (titre, auteur, genre)
-- ✅ **Filtre favoris** avec toggle switch
-- ✅ **Compteur dynamique** de livres affichés
+- ✅ **Filtrage par catégorie** Filtrage par catégorie(Business, Développement personnel...)
 - ✅ **Gestion favoris** avec icône cœur
-- ✅ **Note avec étoiles** et année de publication
 - ✅ **Navigation bottom bar** vers les favoris
 
 ### Écran Favoris
@@ -99,7 +97,6 @@ Application Android native développée en **Kotlin** avec **Jetpack Compose** e
 - ✅ **Image agrandie** de la couverture
 - ✅ **Chip genre** avec Material Design
 - ✅ **Tableau d'informations** organisé
-- ✅ **Action favori** dans la top bar
 - ✅ **Bouton d'achat Amazon** avec redirection vers le produit
 
 ### Navigation
@@ -116,42 +113,26 @@ Application Android native développée en **Kotlin** avec **Jetpack Compose** e
 - **Cohérence visuelle** sur tous les écrans (Welcome, Catalogue, Favoris, Détails)
 - **Material Design 3** avec couleurs optimisées pour chaque mode
 - **Lisibilité parfaite** en mode clair et sombre
-- **Économie d'énergie** sur écrans OLED avec le mode sombre
 
 ### **Implémentation**
 ```kotlin
-// Dans MainActivity et Theme.kt
+// Dans Theme.kt
 @Composable
 fun BookCatalogTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(), // Détection automatique
+    darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
-    val colorScheme = if (darkTheme) {
-        dynamicDarkColorScheme(LocalContext.current)
-    } else {
-        dynamicLightColorScheme(LocalContext.current)
+    val colorScheme = when {
+        darkTheme -> DarkColorScheme
+        else -> LightColorScheme
     }
-    // ...
+
+    MaterialTheme(
+        colorScheme = colorScheme,
+        typography = Typography,
+        content = content
+    )
 }
-```
-
-## 🎨 Choix de Design
-- Couleurs dynamiques et thème adaptatif
-- **Mode sombre automatique** basé sur les préférences système
-- **Thème cohérent** sur tous les écrans
-- Cards avec élévation subtile
-- Typography cohérente
-- États de hover et focus
-- Bottom Navigation moderne
-
-### **UX/UI Moderne**
-- Interface intuitive et responsive
-- **Adaptation automatique** au thème système (clair/sombre)
-- **Expérience visuelle cohérente** quel que soit le mode
-- Animations fluides (implicite Compose)
-- États de chargement avec CircularProgressIndicator
-- Gestion d'erreurs avec messages utilisateur
-- Navigation contextuelle et cohérente
 
 ## 🔧 Bonnes Pratiques Implémentées
 
@@ -167,15 +148,7 @@ fun BookCatalogTheme(
 - ✅ **Architecture modulaire** avec dossier `components/`
 - ✅ **State hoisting** avec `remember` et `collectAsState`
 - ✅ **LaunchedEffect** pour les side effects
-- ✅ **Navigation type-safe** avec arguments
 - ✅ **Navigation Compose** avec gestion d'état
-
-### **Kotlin**
-- ✅ **Data classes** immutables
-- ✅ **Extension functions** pour la lisibilité
-- ✅ **Null safety** avec types optionnels
-- ✅ **Coroutines** pour l'asynchrone
-- ✅ **Organisation modulaire** des données
 
 ## 📊 Gestion d'État
 
@@ -191,7 +164,7 @@ data class BookUiState(
 )
 ```
 
-**Single Source of Truth** avec `StateFlow` pour maintenir la cohérence d'état entre tous les écrans, la navigation et les actions externes (comme l'achat).
+**Single Source of Truth** avec `StateFlow` pour maintenir la cohérence d'état entre tous les écrans.
 
 ## 🔄 Flux de Données
 
@@ -211,7 +184,7 @@ Navigation ← StateFlow ← User Actions ← UI Interactions ←
 
 ## 🎯 Pourquoi ces Choix ?
 
-### **MVVM + Repository + Data Source**
+### **MVVM**
 - **Testabilité** : Logique séparée de l'UI
 - **Maintenabilité** : Code organisé et modulaire
 - **Réactivité** : Mises à jour automatiques avec Flow
@@ -253,8 +226,6 @@ implementation 'androidx.navigation:navigation-compose:2.7.6'
 // ViewModel
 implementation 'androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0'
 
-// Coil pour images
-implementation 'io.coil-kt:coil-compose:2.5.0'
 ```
 
 ## 📱 Écrans de l'Application
@@ -266,7 +237,7 @@ implementation 'io.coil-kt:coil-compose:2.5.0'
 
 ### **BookListScreen** 📖
 - Catalogue complet des livres
-- Recherche et filtrage avancés
+- Recherche et filtrage 
 - Gestion des favoris en temps réel
 
 ### **FavoriteBooksScreen** ❤️
@@ -286,14 +257,11 @@ implementation 'io.coil-kt:coil-compose:2.5.0'
 - 🌐 **API REST** avec Retrofit
 - 🔍 **Recherche avancée** avec filtres multiples
 - 🎨 **Thème personnalisé** avec choix manuel des couleurs
-- 🏷️ **Catégories** et tags
 - 📊 **Statistiques** de lecture
 - 💫 **Animations** personnalisées
 - 🔔 **Notifications** de nouveaux livres
 - 👤 **Profil utilisateur** et préférences
 - 📈 **Recommandations** basées sur les favoris
-- 🛒 **Intégration e-commerce** avec d'autres plateformes
-- 💳 **Système de wishlist** et suivi des prix
 
 ## 🎨 Captures d'Écran
 
@@ -303,4 +271,3 @@ implementation 'io.coil-kt:coil-compose:2.5.0'
 
 **Développé avec ❤️ en Kotlin & Jetpack Compose**
 
-*Une application démontrant les meilleures pratiques Android modernes avec une architecture MVVM complète et une navigation intuitive.*
