@@ -10,6 +10,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import com.example.firstcomposeapp.presentation.viewmodel.BookViewModel
 import com.example.firstcomposeapp.domain.model.Book
-
+import androidx.compose.ui.platform.LocalUriHandler
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BookDetailScreen(
@@ -32,7 +34,7 @@ fun BookDetailScreen(
     onBackClick: () -> Unit
 ) {
     val book by viewModel.selectedBook.collectAsState()
-
+    val uriHandler = LocalUriHandler.current
     LaunchedEffect(bookId) {
         viewModel.loadBookById(bookId)
     }
@@ -70,14 +72,14 @@ fun BookDetailScreen(
                     .padding(16.dp)
             ) {
                 Row(modifier = Modifier.fillMaxWidth()) {
-                  //  Image(
-                    //    painter = rememberAsyncImagePainter(currentBook.coverUrl),
-                      //  contentDescription = "Couverture de ${currentBook.title}",
-                        //modifier = Modifier
-                          //  .size(150.dp, 225.dp)
-                           // .clip(RoundedCornerShape(12.dp)),
-                       // contentScale = ContentScale.Crop
-                   // )
+                    Image(
+                        painter = rememberAsyncImagePainter(currentBook.coverResId),
+                        contentDescription = "Couverture de ${currentBook.title}",
+                        modifier = Modifier
+                            .size(150.dp, 225.dp)
+                            .clip(RoundedCornerShape(12.dp)),
+                        contentScale = ContentScale.Crop
+                    )
                     Spacer(modifier = Modifier.width(16.dp))
                     Column(modifier = Modifier.weight(1f)) {
                         Text(currentBook.title, style = MaterialTheme.typography.headlineSmall, fontWeight = FontWeight.Bold)
@@ -122,6 +124,29 @@ fun BookDetailScreen(
                         InfoRow("Note", "${currentBook.rating}/5")
                         InfoRow("Statut", if (currentBook.isFavorite) "⭐ Favori" else "📖 Non favori")
                     }
+                }
+
+                // Add the Amazon purchase button
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(
+                    onClick = {
+                        uriHandler.openUri(currentBook.amazonLink ?: "https://www.amazon.com")
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = MaterialTheme.colorScheme.onPrimary
+                    )
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.ShoppingCart,
+                        contentDescription = "Acheter sur Amazon",
+                        modifier = Modifier.size(20.dp)
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text("Acheter sur Amazon")
                 }
             }
         }

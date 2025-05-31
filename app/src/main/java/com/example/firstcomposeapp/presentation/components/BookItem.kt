@@ -40,18 +40,18 @@ fun BookItem(
         ) {
             // Book Cover
 
-           // Image(
-             //   painter = rememberAsyncImagePainter(
-               //     model = book.coverUrl,
-                 //   error = painterResource(id = R.drawable.placeholder),
-                   // placeholder = painterResource(id = R.drawable.placeholder)
-                //),
-                //contentDescription = "Couverture de ${book.title}",
-                //modifier = Modifier
-                  //  .size(80.dp, 120.dp)
-                    //.clip(RoundedCornerShape(8.dp)),
-                //contentScale = ContentScale.Crop
-            //)
+             Image(
+               painter = rememberAsyncImagePainter(
+                  book.coverResId,
+               error = painterResource(id = R.drawable.placeholder),
+
+            ),
+            contentDescription = "Couverture de ${book.title}",
+            modifier = Modifier
+              .size(80.dp, 120.dp)
+            .clip(RoundedCornerShape(8.dp)),
+            contentScale = ContentScale.Crop
+            )
 
             Spacer(modifier = Modifier.width(12.dp))
 

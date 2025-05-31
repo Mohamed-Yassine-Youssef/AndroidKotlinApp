@@ -107,7 +107,7 @@ fun WelcomeHomeScreen(
                 modifier = Modifier.alpha(alpha)
             ) {
                 Text(
-                    text = "Welcome to",
+                    text = "Bienvenue dans",
                     fontSize = 24.sp,
                     fontWeight = FontWeight.Light,
                     color = Color.White.copy(alpha = 0.9f),
@@ -127,7 +127,7 @@ fun WelcomeHomeScreen(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Text(
-                    text = "Discover endless stories and knowledge\nin your digital library",
+                    text = "Découvrez des histoires infinies et un savoir illimité dans votre bibliothèque numérique",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Normal,
                     color = Color.White.copy(alpha = 0.8f),
@@ -159,7 +159,7 @@ fun WelcomeHomeScreen(
                     horizontalArrangement = Arrangement.Center
                 ) {
                     Text(
-                        text = "Enter Library",
+                        text = "Accéder à la bibliothèque",
                         fontSize = 18.sp,
                         fontWeight = FontWeight.SemiBold
                     )

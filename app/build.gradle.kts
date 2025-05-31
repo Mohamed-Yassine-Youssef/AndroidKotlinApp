@@ -58,8 +58,7 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
-    // Remove this:
-    // implementation(libs.androidx.lifecycle.viewmodel.android)
+
 
     // Navigation
     implementation("androidx.navigation:navigation-compose:2.7.6")

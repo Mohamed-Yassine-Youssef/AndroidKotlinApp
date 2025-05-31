@@ -9,6 +9,7 @@ data class Book(
     val description: String,
     val publishedYear: Int,
     val rating: Float,
-    val coverUrl: String,
+    val coverResId: Int,
+    val amazonLink:String,
     var isFavorite: Boolean = false
 )

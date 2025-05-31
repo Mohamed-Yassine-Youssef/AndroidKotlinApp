@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.firstcomposeapp.ui.theme.BookCatalogTheme
 import com.example.firstcomposeapp.presentation.screens.BookDetailScreen
 import com.example.firstcomposeapp.presentation.screens.BookListScreen
+import com.example.firstcomposeapp.presentation.screens.FavoriteBooksScreen
 import com.example.firstcomposeapp.presentation.viewmodel.BookViewModel
 
 class MainActivity : ComponentActivity() {
@@ -60,7 +61,8 @@ fun BookCatalogApp() {
                 viewModel = viewModel,
                 onBookClick = { bookId ->
                     navController.navigate("book_detail/$bookId")
-                }
+                },
+                        onNavigateToFavorites={navController.navigate("favorite_books")}
             )
         }
         composable("book_detail/{bookId}") { backStackEntry ->
@@ -69,6 +71,18 @@ fun BookCatalogApp() {
                 viewModel = viewModel,
                 bookId = bookId,
                 onBackClick = { navController.popBackStack() }
+            )
+        }
+        composable("favorite_books") {
+            FavoriteBooksScreen(
+                viewModel = viewModel,
+                onBackClick = { navController.popBackStack() },
+                onBookClick = { bookId ->
+                    navController.navigate("book_detail/$bookId")
+                },
+                        onNavigateToBooks = {
+                    navController.navigate("book_list")
+                }
             )
         }
     }
