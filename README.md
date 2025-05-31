@@ -201,8 +201,7 @@ Navigation ← StateFlow ← User Actions ← UI Interactions ←
 - **Moderne** : Paradigme déclaratif
 - **Thème adaptatif** : Support natif du mode sombre système
 
-### **Données Statiques Centralisées**
-- **Simplicité** : Focus sur l'architecture sans complexité DB
+### **Données Centralisées**
 - **Performance** : Accès instantané aux données
 - **Démo** : Idéal pour présenter les concepts
 - **Organisation** : Structure claire et maintenant
